@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Coberturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Coberturas.Designer.cs">
+      <DependentUpon>Coberturas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +72,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Coberturas.resx">
+      <DependentUpon>Coberturas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -108,7 +117,10 @@
     <Content Include="Resources\Icons\medic.ico" />
     <Content Include="Resources\Images\botonBuscar.png" />
     <Content Include="Resources\Images\botonGuardar.png" />
+    <Content Include="Resources\Images\coberturaIconoBtn.png" />
+    <Content Include="Resources\Images\contactBtn.jpg" />
     <Content Include="Resources\Images\historiaClinicaBtn.png" />
+    <Content Include="Resources\Images\limpiarImagenIcono2.png" />
     <Content Include="Resources\Images\pacienteBtn.png" />
     <Content Include="Resources\Images\patient.png" />
     <Content Include="Resources\Images\patientBtn.png" />

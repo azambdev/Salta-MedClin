@@ -39,5 +39,11 @@ namespace MedClin
             HistoriaClinica frmHistoriaClinica = new HistoriaClinica();
             frmHistoriaClinica.ShowDialog();
         }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            Coberturas frmCobertura = new Coberturas();
+            frmCobertura.ShowDialog();
+        }
     }
 }

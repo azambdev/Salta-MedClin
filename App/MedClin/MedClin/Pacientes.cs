@@ -16,5 +16,25 @@ namespace MedClin
         {
             InitializeComponent();
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Pacientes_Load(object sender, EventArgs e)
+        {
+            Negocio.CoberturaMedica cobertura = new Negocio.CoberturaMedica();
+            List<Negocio.CoberturaMedica> listaCoberturas = cobertura.GetCoberturas();
+
+            if (listaCoberturas.Any())
+            {
+                foreach (var item in listaCoberturas)
+                {
+                    dropdownCoberturas.Items.Add(item.Descripcion());
+                }
+            }
+
+        }
     }
 }

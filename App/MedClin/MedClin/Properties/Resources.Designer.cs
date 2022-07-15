@@ -83,9 +83,39 @@ namespace MedClin.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap coberturaIconoBtn {
+            get {
+                object obj = ResourceManager.GetObject("coberturaIconoBtn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap contactBtn {
+            get {
+                object obj = ResourceManager.GetObject("contactBtn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap historiaClinicaBtn {
             get {
                 object obj = ResourceManager.GetObject("historiaClinicaBtn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap limpiarImagenIcono2 {
+            get {
+                object obj = ResourceManager.GetObject("limpiarImagenIcono2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
