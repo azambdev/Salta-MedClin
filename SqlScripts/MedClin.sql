@@ -69,5 +69,28 @@ where id = inIdCobertura;
 
 END
 
+DELIMITER //
+CREATE PROCEDURE `GetPacientes` ()
+BEGIN
+
+select 
+Id,Dni,Apellido,Nombre,FechaNacimiento,IdCobertura,NumeroAfiliado,Domicilio,
+Email,Telefono,Comentarios,Activo
+from pacientes;
+
+END
+
+DELIMITER //
+
+CREATE PROCEDURE `CreatePaciente` (in inDni varchar(20),in inApellido varchar(50), inNombre varchar(50), in inFechaNacimiento DateTime, in inIdCobertura int, in inNroAfiliado varchar(50), in inDomicilio varchar(100),in inEmail varchar(100),in inTelefono varchar(100), in inComentarios varchar(100))
+BEGIN
+
+insert into Pacientes (Dni, Apellido, Nombre, FechaNacimiento, IdCobertura, NumeroAfiliado, Domicilio, Email, Telefono, Comentarios)
+values ( inDni,inApellido, inNombre, inFechaNacimiento, inIdCobertura, inNroAfiliado, inDomicilio,inEmail,inTelefono, inComentarios);
+
+
+END
+
+
 
 

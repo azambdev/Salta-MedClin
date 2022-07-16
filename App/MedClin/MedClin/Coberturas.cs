@@ -17,6 +17,7 @@ namespace MedClin
             InitializeComponent();
         }
 
+        private List<Negocio.CoberturaMedica> _coberturasExistentes = new List<Negocio.CoberturaMedica>();
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
@@ -47,7 +48,7 @@ namespace MedClin
         {
             Negocio.CoberturaMedica cobertura = new Negocio.CoberturaMedica();
             List<Negocio.CoberturaMedica> listaCoberturas = cobertura.GetCoberturas();
-
+            _coberturasExistentes = listaCoberturas;
             if (listaCoberturas.Any())
             {
                 dataGridViewCoberturas.DataSource = listaCoberturas.OrderBy(x => x.Id()).Select(p => new { Nro = p.Id(), Descripción = p.Descripcion(), Comentarios = p.Comentarios() }).ToList();
@@ -91,6 +92,13 @@ namespace MedClin
                     MessageBox.Show("Debe completar el nombre de la cobertura", "Validación de operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
+                if (_coberturasExistentes.Exists(x => x.Descripcion().Trim().ToUpper() ==NombreCobertura().Trim().ToUpper()))
+                {
+                    MessageBox.Show("El nombre de cobertura ya existe.", "Validación de operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 NuevaCobertura();
                 LimpiarCampos();
                 dataGridViewCoberturas.DataSource = null;

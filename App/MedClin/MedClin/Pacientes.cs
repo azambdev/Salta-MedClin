@@ -36,5 +36,44 @@ namespace MedClin
             }
 
         }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+
+            
+            LimpiarControles();
+            
+
+        }
+
+
+        public int CalcularEdad()
+        {           
+                return DateTime.Today.AddTicks(-dateTimePickerFN.Value.Date.Ticks).Year - 1;
+          
+
+        }
+
+        private void LimpiarControles()
+        {
+            txtDni.Clear();
+            txtApellido.Clear();
+            txtNombre.Clear();
+            dateTimePickerFN.ResetText();
+            txtEdad.Clear();
+            dropdownCoberturas.SelectedIndex = -1;
+            txtNroAfiliado.Clear();
+            txtDomicilio.Clear();
+            txtEmail.Clear();
+            txtTelefono.Clear();
+            txtComentarios.Clear();
+            
+          
+        }
+
+        private void dateTimePickerFN_ValueChanged(object sender, EventArgs e)
+        {
+            txtEdad.Text = CalcularEdad().ToString();
+        }
     }
 }

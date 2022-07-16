@@ -30,17 +30,19 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pacientes));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtNroAfiliado = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.dropdownCoberturas = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtComentarios = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtTelefono = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtDomicilio = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.txtEdad = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dateTimePickerFN = new System.Windows.Forms.DateTimePicker();
@@ -51,21 +53,19 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtDni = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.dropdownCoberturas = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtNroAfiliado = new System.Windows.Forms.TextBox();
+            this.txtTelefono = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtDomicilio = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -83,15 +83,52 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButton2.Image = global::MedClin.Properties.Resources.botonBuscar;
+            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(68, 88);
+            this.toolStripButton2.Text = "Buscar";
+            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 90);
             // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButton3.Image = global::MedClin.Properties.Resources.botonGuardar;
+            this.toolStripButton3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(70, 88);
+            this.toolStripButton3.Text = "Guardar";
+            this.toolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 90);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButton1.Image = global::MedClin.Properties.Resources.historiaClinicaBtn;
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(68, 88);
+            this.toolStripButton1.Text = "Historia";
+            this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // groupBox1
             // 
@@ -121,6 +158,53 @@
             this.groupBox1.Text = "Datos Principales";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // txtNroAfiliado
+            // 
+            this.txtNroAfiliado.Location = new System.Drawing.Point(507, 206);
+            this.txtNroAfiliado.MaxLength = 50;
+            this.txtNroAfiliado.Name = "txtNroAfiliado";
+            this.txtNroAfiliado.Size = new System.Drawing.Size(229, 28);
+            this.txtNroAfiliado.TabIndex = 6;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(372, 212);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(129, 20);
+            this.label11.TabIndex = 21;
+            this.label11.Text = "Nro Afiliado:";
+            // 
+            // dropdownCoberturas
+            // 
+            this.dropdownCoberturas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.dropdownCoberturas.FormattingEnabled = true;
+            this.dropdownCoberturas.Location = new System.Drawing.Point(124, 209);
+            this.dropdownCoberturas.Name = "dropdownCoberturas";
+            this.dropdownCoberturas.Size = new System.Drawing.Size(229, 28);
+            this.dropdownCoberturas.TabIndex = 5;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(2, 209);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(110, 20);
+            this.label10.TabIndex = 19;
+            this.label10.Text = "Cobertura:";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::MedClin.Properties.Resources.pacienteBtn1;
+            this.pictureBox1.Location = new System.Drawing.Point(660, 18);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(85, 85);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
+            // 
             // txtComentarios
             // 
             this.txtComentarios.Location = new System.Drawing.Point(124, 254);
@@ -139,60 +223,6 @@
             this.label9.Size = new System.Drawing.Size(95, 20);
             this.label9.TabIndex = 16;
             this.label9.Text = "Coment.:";
-            // 
-            // txtTelefono
-            // 
-            this.txtTelefono.Location = new System.Drawing.Point(128, 126);
-            this.txtTelefono.MaxLength = 15;
-            this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(384, 28);
-            this.txtTelefono.TabIndex = 9;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(11, 129);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(99, 20);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Teléfono:";
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new System.Drawing.Point(128, 83);
-            this.txtEmail.MaxLength = 15;
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(384, 28);
-            this.txtEmail.TabIndex = 8;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(41, 86);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(69, 20);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Email:";
-            // 
-            // txtDomicilio
-            // 
-            this.txtDomicilio.Location = new System.Drawing.Point(128, 40);
-            this.txtDomicilio.MaxLength = 15;
-            this.txtDomicilio.Name = "txtDomicilio";
-            this.txtDomicilio.Size = new System.Drawing.Size(384, 28);
-            this.txtDomicilio.TabIndex = 7;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(6, 43);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(106, 20);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Domicilio:";
             // 
             // txtEdad
             // 
@@ -221,6 +251,7 @@
             this.dateTimePickerFN.Name = "dateTimePickerFN";
             this.dateTimePickerFN.Size = new System.Drawing.Size(229, 28);
             this.dateTimePickerFN.TabIndex = 4;
+            this.dateTimePickerFN.ValueChanged += new System.EventHandler(this.dateTimePickerFN_ValueChanged);
             // 
             // label4
             // 
@@ -235,7 +266,7 @@
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(124, 125);
-            this.txtNombre.MaxLength = 15;
+            this.txtNombre.MaxLength = 50;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(229, 28);
             this.txtNombre.TabIndex = 3;
@@ -253,7 +284,7 @@
             // txtApellido
             // 
             this.txtApellido.Location = new System.Drawing.Point(124, 78);
-            this.txtApellido.MaxLength = 15;
+            this.txtApellido.MaxLength = 50;
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(229, 28);
             this.txtApellido.TabIndex = 2;
@@ -271,7 +302,7 @@
             // txtDni
             // 
             this.txtDni.Location = new System.Drawing.Point(124, 37);
-            this.txtDni.MaxLength = 15;
+            this.txtDni.MaxLength = 20;
             this.txtDni.Name = "txtDni";
             this.txtDni.Size = new System.Drawing.Size(229, 28);
             this.txtDni.TabIndex = 1;
@@ -286,42 +317,59 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Dni:";
             // 
-            // label10
+            // txtTelefono
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(2, 209);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(110, 20);
-            this.label10.TabIndex = 19;
-            this.label10.Text = "Cobertura:";
+            this.txtTelefono.Location = new System.Drawing.Point(128, 126);
+            this.txtTelefono.MaxLength = 100;
+            this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.Size = new System.Drawing.Size(384, 28);
+            this.txtTelefono.TabIndex = 9;
             // 
-            // dropdownCoberturas
+            // label8
             // 
-            this.dropdownCoberturas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.dropdownCoberturas.FormattingEnabled = true;
-            this.dropdownCoberturas.Location = new System.Drawing.Point(124, 209);
-            this.dropdownCoberturas.Name = "dropdownCoberturas";
-            this.dropdownCoberturas.Size = new System.Drawing.Size(229, 28);
-            this.dropdownCoberturas.TabIndex = 5;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(11, 129);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(99, 20);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "Teléfono:";
             // 
-            // label11
+            // txtEmail
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(372, 212);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(129, 20);
-            this.label11.TabIndex = 21;
-            this.label11.Text = "Nro Afiliado:";
+            this.txtEmail.Location = new System.Drawing.Point(128, 83);
+            this.txtEmail.MaxLength = 100;
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(384, 28);
+            this.txtEmail.TabIndex = 8;
             // 
-            // txtNroAfiliado
+            // label7
             // 
-            this.txtNroAfiliado.Location = new System.Drawing.Point(507, 206);
-            this.txtNroAfiliado.MaxLength = 50;
-            this.txtNroAfiliado.Name = "txtNroAfiliado";
-            this.txtNroAfiliado.Size = new System.Drawing.Size(229, 28);
-            this.txtNroAfiliado.TabIndex = 6;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(41, 86);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(69, 20);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Email:";
+            // 
+            // txtDomicilio
+            // 
+            this.txtDomicilio.Location = new System.Drawing.Point(128, 40);
+            this.txtDomicilio.MaxLength = 100;
+            this.txtDomicilio.Name = "txtDomicilio";
+            this.txtDomicilio.Size = new System.Drawing.Size(384, 28);
+            this.txtDomicilio.TabIndex = 7;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(6, 43);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(106, 20);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Domicilio:";
             // 
             // groupBox2
             // 
@@ -350,52 +398,6 @@
             this.pictureBox2.TabIndex = 19;
             this.pictureBox2.TabStop = false;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::MedClin.Properties.Resources.pacienteBtn1;
-            this.pictureBox1.Location = new System.Drawing.Point(660, 18);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(85, 85);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 18;
-            this.pictureBox1.TabStop = false;
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButton2.Image = global::MedClin.Properties.Resources.botonBuscar;
-            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(68, 88);
-            this.toolStripButton2.Text = "Buscar";
-            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButton3.Image = global::MedClin.Properties.Resources.botonGuardar;
-            this.toolStripButton3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(70, 88);
-            this.toolStripButton3.Text = "Guardar";
-            this.toolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButton1.Image = global::MedClin.Properties.Resources.historiaClinicaBtn;
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(68, 88);
-            this.toolStripButton1.Text = "Historia";
-            this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
             // Pacientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -416,10 +418,10 @@
             this.toolStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -37,6 +37,7 @@ namespace DAL
             }
         }
 
+     
         public void Create(string dni, string apellido, string nombre, DateTime fechaNacimiento, int idCobertura, string nroAfiliado, string domicilio, string telefono, string email, string comentarios)
         {
             try
@@ -48,11 +49,16 @@ namespace DAL
                     using (MySqlCommand cmd = new MySqlCommand("CreatePaciente", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        //cmd.Parameters.AddWithValue("@Codigo", codigo);
-                        //cmd.Parameters.AddWithValue("@IdCategoria", idCategoria);
-                        //cmd.Parameters.AddWithValue("@Descripcion", descripcion);
-                        //cmd.Parameters.AddWithValue("@Activo", activo);
-                        //cmd.Parameters.AddWithValue("@Imagen", imagen);
+                        cmd.Parameters.AddWithValue("@inDni", dni);
+                        cmd.Parameters.AddWithValue("@inApellido", apellido);
+                        cmd.Parameters.AddWithValue("@inNombre", nombre);
+                        cmd.Parameters.AddWithValue("@inFechaNacimiento", fechaNacimiento);
+                        cmd.Parameters.AddWithValue("@inIdCobertura", idCobertura);
+                        cmd.Parameters.AddWithValue("@inNroAfiliado", nroAfiliado);
+                        cmd.Parameters.AddWithValue("@inDomicilio", domicilio);
+                        cmd.Parameters.AddWithValue("@inTelefono", telefono);
+                        cmd.Parameters.AddWithValue("@inEmail", email);
+                        cmd.Parameters.AddWithValue("@inComentarios", comentarios);                       
                         con.Open();
                         cmd.ExecuteNonQuery();
                         con.Close();
