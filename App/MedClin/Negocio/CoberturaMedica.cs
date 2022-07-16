@@ -40,6 +40,19 @@ namespace Negocio
             this._activo = activo;
         }
 
+        public CoberturaMedica(int id, string descripcion, string comentarios)
+        {
+            this._id = id;
+            this._descripcion = descripcion;
+            this._comentarios = comentarios;          
+        }
+
+        public CoberturaMedica(string descripcion, string comentarios)
+        {           
+            this._descripcion = descripcion;
+            this._comentarios = comentarios;          
+        }
+
         public CoberturaMedica()
         {
 
@@ -62,5 +75,34 @@ namespace Negocio
             }
             return coberturas;
         }
+
+
+        public void Create()
+        {
+            try
+            {
+                DAL.RepositorioDeCoberturas repositorioDeCoberturas = new DAL.RepositorioDeCoberturas();
+                repositorioDeCoberturas.Create(this.Descripcion(), this.Comentarios());
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public void Update()
+        {
+            try
+            {
+                DAL.RepositorioDeCoberturas repositorioDeCoberturas = new DAL.RepositorioDeCoberturas();
+                repositorioDeCoberturas.Update(this.Id(), this.Descripcion(), this.Comentarios());
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
     }
 }

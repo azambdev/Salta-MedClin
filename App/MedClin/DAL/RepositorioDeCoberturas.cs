@@ -30,5 +30,68 @@ namespace DAL
             }
             return dt;
         }
+
+        public void Create(string nombreCobertura, string comentariosCobertura)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
+                using (MySqlConnection con = new MySqlConnection(constr))
+                {
+                    using (MySqlCommand cmd = new MySqlCommand("CreateCobertura", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@inDescripcionCobertura", nombreCobertura);
+                        cmd.Parameters.AddWithValue("@inComentarios", comentariosCobertura);
+                        //cmd.Parameters.AddWithValue("@Descripcion", descripcion);
+                        //cmd.Parameters.AddWithValue("@Activo", activo);
+                        //cmd.Parameters.AddWithValue("@Imagen", imagen);
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void Update(int idCobertura, string nombreCobertura, string comentariosCobertura)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
+                using (MySqlConnection con = new MySqlConnection(constr))
+                {
+                    using (MySqlCommand cmd = new MySqlCommand("UpdateCobertura", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@inIdCobertura", idCobertura);
+                        cmd.Parameters.AddWithValue("@inDescripcionCobertura", nombreCobertura);
+                        cmd.Parameters.AddWithValue("@inComentarios", comentariosCobertura);
+                        //cmd.Parameters.AddWithValue("@Descripcion", descripcion);
+                        //cmd.Parameters.AddWithValue("@Activo", activo);
+                        //cmd.Parameters.AddWithValue("@Imagen", imagen);
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
     }
+
+
+
+
 }

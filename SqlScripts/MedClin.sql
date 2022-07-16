@@ -51,6 +51,23 @@ BEGIN
 Select id, descripcion, comentarios, activo from CoberturaMedica;
 END
 
+DELIMITER //
+CREATE PROCEDURE `CreateCobertura`(in inDescripcionCobertura varchar(50),in inComentarios varchar(100))
+BEGIN
+insert into CoberturaMedica (descripcion, comentarios) values (inDescripcionCobertura,inComentarios);
+END
+
+DELIMITER //
+
+CREATE PROCEDURE `UpdateCobertura`(in inIdCobertura int, in inDescripcionCobertura varchar(50),in inComentarios varchar(100))
+BEGIN
+
+update CoberturaMedica
+set descripcion = inDescripcionCobertura,
+comentarios = inComentarios
+where id = inIdCobertura;
+
+END
 
 
 
