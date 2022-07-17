@@ -61,6 +61,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -72,6 +73,7 @@
             // 
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton4,
             this.toolStripButton2,
             this.toolStripSeparator1,
             this.toolStripButton3,
@@ -321,10 +323,10 @@
             // 
             // txtTelefono
             // 
-            this.txtTelefono.Location = new System.Drawing.Point(128, 126);
+            this.txtTelefono.Location = new System.Drawing.Point(124, 126);
             this.txtTelefono.MaxLength = 100;
             this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(384, 28);
+            this.txtTelefono.Size = new System.Drawing.Size(388, 28);
             this.txtTelefono.TabIndex = 9;
             // 
             // label8
@@ -339,10 +341,10 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(128, 83);
+            this.txtEmail.Location = new System.Drawing.Point(124, 83);
             this.txtEmail.MaxLength = 100;
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(384, 28);
+            this.txtEmail.Size = new System.Drawing.Size(388, 28);
             this.txtEmail.TabIndex = 8;
             // 
             // label7
@@ -357,10 +359,10 @@
             // 
             // txtDomicilio
             // 
-            this.txtDomicilio.Location = new System.Drawing.Point(128, 40);
+            this.txtDomicilio.Location = new System.Drawing.Point(124, 40);
             this.txtDomicilio.MaxLength = 100;
             this.txtDomicilio.Name = "txtDomicilio";
-            this.txtDomicilio.Size = new System.Drawing.Size(384, 28);
+            this.txtDomicilio.Size = new System.Drawing.Size(388, 28);
             this.txtDomicilio.TabIndex = 7;
             // 
             // label6
@@ -399,6 +401,19 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 19;
             this.pictureBox2.TabStop = false;
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButton4.Image = global::MedClin.Properties.Resources.limpiarImagenIcono2;
+            this.toolStripButton4.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(68, 88);
+            this.toolStripButton4.Text = "Limpiar";
+            this.toolStripButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // Pacientes
             // 
@@ -463,5 +478,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
     }
 }

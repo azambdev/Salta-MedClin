@@ -82,11 +82,16 @@ namespace DAL
                     using (MySqlCommand cmd = new MySqlCommand("UpdatePaciente", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        //cmd.Parameters.AddWithValue("@inCodigo", codigo);
-                        //cmd.Parameters.AddWithValue("@inIdCategoria", idCategoria);
-                        //cmd.Parameters.AddWithValue("@inDescripcion", descripcion);
-                        //cmd.Parameters.AddWithValue("@inActivo", activo);
-                        //cmd.Parameters.AddWithValue("@inImagen", imagen);
+                        cmd.Parameters.AddWithValue("@inDni", dni);
+                        cmd.Parameters.AddWithValue("@inApellido", apellido);
+                        cmd.Parameters.AddWithValue("@inNombre", nombre);
+                        cmd.Parameters.AddWithValue("@inFechaNacimiento", fechaNacimiento);
+                        cmd.Parameters.AddWithValue("@inIdCobertura", idCobertura);
+                        cmd.Parameters.AddWithValue("@inNroAfiliado", nroAfiliado);
+                        cmd.Parameters.AddWithValue("@inDomicilio", domicilio);
+                        cmd.Parameters.AddWithValue("@inTelefono", telefono);
+                        cmd.Parameters.AddWithValue("@inEmail", email);
+                        cmd.Parameters.AddWithValue("@inComentarios", comentarios);
                         con.Open();
                         cmd.ExecuteNonQuery();
                         con.Close();

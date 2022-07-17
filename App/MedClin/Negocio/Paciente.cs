@@ -131,7 +131,18 @@ namespace Negocio
             return pacientes;
         }
 
-
+        public void Update()
+        {
+            try
+            {
+                DAL.RepositorioDePacientes repositorioDePacientes = new DAL.RepositorioDePacientes();
+                repositorioDePacientes.Update(this.NroDocumento(), this.Apellido(), this.Nombre(), this.FechaNacimiento(), this.Cobertura().Id(), this.NroAfiliado(), this.Domicilio(), this.Telefono(), this.Email(), this.Comentarios());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
 

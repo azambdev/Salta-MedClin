@@ -85,7 +85,7 @@ values ( inDni,inApellido, inNombre, inFechaNacimiento, inIdCobertura, inNroAfil
 END
 
 DELIMITER //
-
+12776453
 CREATE DEFINER=`root`@`localhost` PROCEDURE `UpdatePaciente`(in inDni varchar(20),in inApellido varchar(50), inNombre varchar(50), in inFechaNacimiento DateTime, in inIdCobertura int, in inNroAfiliado varchar(50), in inDomicilio varchar(100),in inEmail varchar(100),in inTelefono varchar(100), in inComentarios varchar(100))
 BEGIN
 
@@ -94,7 +94,7 @@ set Apellido = inApellido,
 Nombre = inNombre,
 FechaNacimiento = inFechaNacimiento,
 IdCobertura = inIdCobertura,
-NumeroAfiliado = inNumeroAfiliado ,
+NumeroAfiliado = inNroAfiliado ,
 Domicilio = inDomicilio,
 Email = inEmail,
 Telefono = inTelefono,

@@ -53,15 +53,25 @@ namespace MedClin
             {
                  return;
             }
-
-                GuardarPaciente();
-                txtDni.Enabled = false;
+                if (txtDni.Enabled)
+                {
+                    GuardarPaciente();
+                    txtDni.Enabled = false;
+                    
+                }
+                else
+                {
+                ActualizarPaciente();
                 MessageBox.Show("Paciente guardado correctamente", "Resultado de Operación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               
+                }
+              
                 return;
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error en proceso", "Resultado de Operación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error en proceso: " + ex.Message, "Resultado de Operación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
            
@@ -72,12 +82,20 @@ namespace MedClin
 
         }
 
+        private void ActualizarPaciente()
+        {
+                Negocio.Paciente paciente = new Negocio.Paciente(0, Dni(), ApellidoPaciente(), NombrePaciente(), FechaNacimiento(), CoberturaAfiliado(), NumeroAfiliado(), Domicilio(), Email(), Telefono(), Comentarios(), true);
+                paciente.Update();
+                _listaPacientesExistentes = paciente.GetPacientes();
+        }
+
         private void GuardarPaciente()
         {
             try
             {
                 Negocio.Paciente paciente = new Negocio.Paciente(0, Dni(),ApellidoPaciente(), NombrePaciente(), FechaNacimiento(),CoberturaAfiliado(), NumeroAfiliado(),Domicilio(),Email(),Telefono(),Comentarios(),true );
                 paciente.Create();
+                _listaPacientesExistentes = paciente.GetPacientes();
             }
             catch (Exception ex)
             {
@@ -91,41 +109,48 @@ namespace MedClin
             if (EstaVacio(Dni()))
             {
                 MessageBox.Show("Debe completar el DNI del paciente", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-               return false;
+                txtDni.Focus();
+                return false;
             }
             if ((Dni().Length < 5))
             {
                 MessageBox.Show("Debe informar un DNI válido", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDni.Focus();
                 return false;
             }
           
             if (!int.TryParse(Dni(), out _))
             {
                 MessageBox.Show("Debe informar un DNI válido, solo números", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDni.Focus();
                 return false;
             }
                        
             if (EstaVacio(ApellidoPaciente()))
             {
                 MessageBox.Show("Debe completar el apellido del paciente", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtApellido.Focus();
                 return false;
             }
 
             if ((ApellidoPaciente().Length < 2))
             {
                 MessageBox.Show("Debe informar un apellido válido", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtApellido.Focus();
                 return false;
             }
 
             if (EstaVacio(NombrePaciente()))
             {
                 MessageBox.Show("Debe completar el nombre del paciente", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
                 return false;
             }
 
             if ((NombrePaciente().Length < 2))
             {
                 MessageBox.Show("Debe informar un nombre válido", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
                 return false;
             }
 
@@ -139,12 +164,14 @@ namespace MedClin
             if (result >= 0)
             {
                 MessageBox.Show("Fecha de nacimiento incorrecta, debe ser menor a la actual", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dateTimePickerFN.Focus();
                 return false;
             }
 
             if (dropdownCoberturas.SelectedIndex==-1)
             {
                 MessageBox.Show("Debe especificar una cobertura", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dropdownCoberturas.Focus();
                 return false;
             }
 
@@ -331,6 +358,11 @@ namespace MedClin
             txtEmail.Text = pacienteConsultado.Email();
             txtTelefono.Text = pacienteConsultado.Telefono();
             txtComentarios.Text = pacienteConsultado.Comentarios();            
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            LimpiarControles();
         }
     }
 }
