@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -104,6 +105,31 @@ namespace Negocio
             }
         }
 
+        public List<Paciente> GetPacientes()
+        {
+            DAL.RepositorioDePacientes repo = new DAL.RepositorioDePacientes();
+            List<Paciente> pacientes = new List<Paciente>();
+            DataTable table = repo.GetAll();
+
+           
+            List<CoberturaMedica> coberturas = new List<CoberturaMedica>();          
+            CoberturaMedica cobertura = new CoberturaMedica();
+            coberturas = cobertura.GetCoberturas();
+
+            foreach (DataRow row in table.Rows)
+            {
+                bool esActivo = false;
+                if (row["activo"].ToString() == "1")
+                {
+                    esActivo = true;
+                }
+
+                CoberturaMedica coberturaPaciente = coberturas.Find(x => x.Id() == int.Parse(row["IdCobertura"].ToString()));
+
+                pacientes.Add(new Paciente(int.Parse(row["id"].ToString()), row["dni"].ToString(), row["apellido"].ToString(), row["nombre"].ToString(),DateTime.Parse( row["fechanacimiento"].ToString()), coberturaPaciente, row["numeroafiliado"].ToString(), row["domicilio"].ToString(), row["email"].ToString(), row["telefono"].ToString(), row["comentarios"].ToString(), esActivo));
+            }
+            return pacientes;
+        }
 
 
 

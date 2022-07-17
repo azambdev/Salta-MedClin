@@ -34,17 +34,10 @@ Activo bit default 1,
 FechaCreacion datetime default now()
 );
 
-
-Create Table Pacientes
-(
-Id int AUTO_INCREMENT primary key,
-Dni varchar(20) unique not null,
-Apellido varchar(50) not null,
-Nombre varchar(50) not null,
-Activo bit default 1
-);
-
+select * from pacientes
 DELIMITER //
+
+
 
 CREATE PROCEDURE `GetCoberturas`()
 BEGIN
@@ -91,6 +84,22 @@ values ( inDni,inApellido, inNombre, inFechaNacimiento, inIdCobertura, inNroAfil
 
 END
 
+DELIMITER //
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UpdatePaciente`(in inDni varchar(20),in inApellido varchar(50), inNombre varchar(50), in inFechaNacimiento DateTime, in inIdCobertura int, in inNroAfiliado varchar(50), in inDomicilio varchar(100),in inEmail varchar(100),in inTelefono varchar(100), in inComentarios varchar(100))
+BEGIN
+
+update Pacientes
+set Apellido = inApellido,
+Nombre = inNombre,
+FechaNacimiento = inFechaNacimiento,
+IdCobertura = inIdCobertura,
+NumeroAfiliado = inNumeroAfiliado ,
+Domicilio = inDomicilio,
+Email = inEmail,
+Telefono = inTelefono,
+Comentarios = inComentarios
+where Dni = inDni;
 
 
-
+END

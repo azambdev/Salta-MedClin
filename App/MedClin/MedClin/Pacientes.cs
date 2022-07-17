@@ -17,6 +17,8 @@ namespace MedClin
             InitializeComponent();
         }
 
+        private List<Negocio.Paciente> _listaPacientesExistentes = new List<Negocio.Paciente>();
+        private List<Negocio.CoberturaMedica> _listaCoberturas = new List<Negocio.CoberturaMedica>();
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
@@ -26,6 +28,11 @@ namespace MedClin
         {
             Negocio.CoberturaMedica cobertura = new Negocio.CoberturaMedica();
             List<Negocio.CoberturaMedica> listaCoberturas = cobertura.GetCoberturas();
+            _listaCoberturas = listaCoberturas;
+
+            Negocio.Paciente paciente = new Negocio.Paciente();
+            List<Negocio.Paciente> listapacientes = paciente.GetPacientes();
+            _listaPacientesExistentes = listapacientes;
 
             if (listaCoberturas.Any())
             {
@@ -39,19 +46,136 @@ namespace MedClin
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
+            try
+            {
+                           
+            if (!FormularioEstaCompleto())
+            {
+                 return;
+            }
 
-            
-            LimpiarControles();
+                GuardarPaciente();
+                txtDni.Enabled = false;
+                MessageBox.Show("Paciente guardado correctamente", "Resultado de Operación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en proceso", "Resultado de Operación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+           
+
+           
+            //LimpiarControles();
             
 
         }
 
+        private void GuardarPaciente()
+        {
+            try
+            {
+                Negocio.Paciente paciente = new Negocio.Paciente(0, Dni(),ApellidoPaciente(), NombrePaciente(), FechaNacimiento(),CoberturaAfiliado(), NumeroAfiliado(),Domicilio(),Email(),Telefono(),Comentarios(),true );
+                paciente.Create();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error en proceso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        private bool FormularioEstaCompleto()
+        {
+            if (EstaVacio(Dni()))
+            {
+                MessageBox.Show("Debe completar el DNI del paciente", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+               return false;
+            }
+            if ((Dni().Length < 5))
+            {
+                MessageBox.Show("Debe informar un DNI válido", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+          
+            if (!int.TryParse(Dni(), out _))
+            {
+                MessageBox.Show("Debe informar un DNI válido, solo números", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+                       
+            if (EstaVacio(ApellidoPaciente()))
+            {
+                MessageBox.Show("Debe completar el apellido del paciente", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if ((ApellidoPaciente().Length < 2))
+            {
+                MessageBox.Show("Debe informar un apellido válido", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (EstaVacio(NombrePaciente()))
+            {
+                MessageBox.Show("Debe completar el nombre del paciente", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if ((NombrePaciente().Length < 2))
+            {
+                MessageBox.Show("Debe informar un nombre válido", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (EstaVacio(FechaNacimiento().ToShortDateString()))
+            {
+                MessageBox.Show("Debe completar la fecha de nacimiento del paciente", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            int result = DateTime.Compare(FechaNacimiento(),DateTime.Parse(DateTime.Now.ToShortDateString()));
+            if (result >= 0)
+            {
+                MessageBox.Show("Fecha de nacimiento incorrecta, debe ser menor a la actual", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (dropdownCoberturas.SelectedIndex==-1)
+            {
+                MessageBox.Show("Debe especificar una cobertura", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool EstaVacio(string campo)
+        {
+            return campo.Length == 0;
+        }
 
         public int CalcularEdad()
-        {           
-                return DateTime.Today.AddTicks(-dateTimePickerFN.Value.Date.Ticks).Year - 1;
-          
+        {
+            try
+            {
 
+                int result = DateTime.Compare(FechaNacimiento(), DateTime.Now);
+                if (result >= 0)
+                {
+                    //if (dateTimePickerFN.Value.Date >= DateTime.Now )
+                
+                    return 0;
+                }
+
+                return DateTime.Today.AddTicks(-dateTimePickerFN.Value.Date.Ticks).Year - 1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fecha de nacimiento incorrecta", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return 0;
+            }               
         }
 
         private void LimpiarControles()
@@ -67,13 +191,146 @@ namespace MedClin
             txtEmail.Clear();
             txtTelefono.Clear();
             txtComentarios.Clear();
-            
-          
+            txtDni.Enabled = true;
+
+
         }
 
         private void dateTimePickerFN_ValueChanged(object sender, EventArgs e)
         {
             txtEdad.Text = CalcularEdad().ToString();
+        }
+
+
+        private string Dni()
+        {
+            return txtDni.Text.Trim();
+        }
+
+        private string NombrePaciente()
+        {
+            return txtNombre.Text.Trim();
+        }
+
+        private string ApellidoPaciente()
+        {
+            return txtApellido.Text.Trim();
+        }
+
+        private DateTime FechaNacimiento()
+        {
+            return dateTimePickerFN.Value.Date;
+        }
+
+        private Negocio.CoberturaMedica CoberturaAfiliado()
+        {
+            return _listaCoberturas.Find(x => x.Descripcion().ToUpper() == dropdownCoberturas.SelectedItem.ToString().ToUpper());
+        }
+
+        private string NumeroAfiliado()
+        {
+            return txtNroAfiliado.Text.Trim();
+        }
+
+        private string Domicilio()
+        {
+            return txtDomicilio.Text.Trim();
+        }
+        private string Telefono()
+        {
+            return txtTelefono.Text.Trim();
+        }
+        private string Email()
+        {
+            return txtEmail.Text.Trim();
+        }
+        private string Comentarios()
+        {
+            return txtComentarios.Text.Trim();
+        }
+
+        private void txtDni_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+
+            //if (e.KeyCode == Keys.Tab)
+            //{
+            //    Negocio.Paciente pacienteConsultado = _listaPacientesExistentes.Find(x => x.NroDocumento() == txtDni.Text);
+            //    if (pacienteConsultado != null)
+            //    {
+            //        CargarDatosPaciente(pacienteConsultado);
+            //    }
+            //    else
+            //    {
+            //        return;
+            //    }
+            //}
+
+
+        }
+
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            bool baseResult = base.ProcessCmdKey(ref msg, keyData);
+
+            if (txtDni.Text.Length==0)
+            {
+                return false;
+            }
+
+            if (keyData == Keys.Tab && txtDni.Focused)
+            {
+                Negocio.Paciente pacienteConsultado = _listaPacientesExistentes.Find(x => x.NroDocumento() == txtDni.Text);
+                if (pacienteConsultado != null)
+                {
+                    CargarDatosPaciente(pacienteConsultado);
+                }
+                else
+                {
+                    return true;
+                }
+            }
+
+            if (keyData == (Keys.Tab | Keys.Shift) && txtDni.Focused)
+            {              
+                return true;
+            }
+
+            return baseResult;
+        }
+
+        private void txtDni_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            //if (e.KeyCode == Keys.Tab)
+            //{
+            //    Negocio.Paciente pacienteConsultado = _listaPacientesExistentes.Find(x => x.NroDocumento() == txtDni.Text);
+            //    if (pacienteConsultado != null)
+            //    {
+            //        CargarDatosPaciente(pacienteConsultado);
+            //    }
+            //    else
+            //    {
+            //        return;
+            //    }
+            //}
+
+
+        }
+
+        public void CargarDatosPaciente(Negocio.Paciente pacienteConsultado)
+        {
+            txtDni.Text = pacienteConsultado.NroDocumento();
+            txtDni.Enabled = false;
+            txtApellido.Text = pacienteConsultado.Apellido();
+            txtNombre.Text = pacienteConsultado.Nombre();
+            dateTimePickerFN.Value = pacienteConsultado.FechaNacimiento();
+            dropdownCoberturas.SelectedItem = pacienteConsultado.Cobertura().Descripcion();
+            txtNroAfiliado.Text = pacienteConsultado.NroAfiliado();
+            txtDomicilio.Text = pacienteConsultado.Domicilio();
+            txtEmail.Text = pacienteConsultado.Email();
+            txtTelefono.Text = pacienteConsultado.Telefono();
+            txtComentarios.Text = pacienteConsultado.Comentarios();            
         }
     }
 }

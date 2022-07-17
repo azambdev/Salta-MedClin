@@ -303,9 +303,11 @@
             // 
             this.txtDni.Location = new System.Drawing.Point(124, 37);
             this.txtDni.MaxLength = 20;
+            this.txtDni.Multiline = true;
             this.txtDni.Name = "txtDni";
             this.txtDni.Size = new System.Drawing.Size(229, 28);
             this.txtDni.TabIndex = 1;
+            this.txtDni.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDni_KeyDown);
             // 
             // label1
             // 
