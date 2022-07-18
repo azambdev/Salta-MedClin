@@ -53,11 +53,21 @@ namespace MedClin
             {
                  return;
             }
+
                 if (txtDni.Enabled)
                 {
+
+                    if (_listaPacientesExistentes.Exists(x => x.NroDocumento().Trim() == Dni().Trim()))
+                    {
+                        MessageBox.Show("El DNI ingresado ya existe.", "Validación de operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     GuardarPaciente();
+                    MessageBox.Show("Paciente guardado correctamente", "Resultado de Operación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     txtDni.Enabled = false;
-                    
+                    toolStripButtonHistoriaClinica.Visible = true;
                 }
                 else
                 {
@@ -92,10 +102,11 @@ namespace MedClin
         private void GuardarPaciente()
         {
             try
-            {
+            {        
                 Negocio.Paciente paciente = new Negocio.Paciente(0, Dni(),ApellidoPaciente(), NombrePaciente(), FechaNacimiento(),CoberturaAfiliado(), NumeroAfiliado(),Domicilio(),Email(),Telefono(),Comentarios(),true );
                 paciente.Create();
                 _listaPacientesExistentes = paciente.GetPacientes();
+               
             }
             catch (Exception ex)
             {
@@ -219,7 +230,7 @@ namespace MedClin
             txtTelefono.Clear();
             txtComentarios.Clear();
             txtDni.Enabled = true;
-
+            toolStripButtonHistoriaClinica.Visible = false;
 
         }
 
@@ -357,12 +368,22 @@ namespace MedClin
             txtDomicilio.Text = pacienteConsultado.Domicilio();
             txtEmail.Text = pacienteConsultado.Email();
             txtTelefono.Text = pacienteConsultado.Telefono();
-            txtComentarios.Text = pacienteConsultado.Comentarios();            
+            txtComentarios.Text = pacienteConsultado.Comentarios();
+            toolStripButtonHistoriaClinica.Visible = true;
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
             LimpiarControles();
+        }
+
+        private void toolStripButtonHistoriaClinica_Click(object sender, EventArgs e)
+        {
+            Negocio.Paciente paciente = new Negocio.Paciente(0, Dni(), ApellidoPaciente(), NombrePaciente(), FechaNacimiento(), CoberturaAfiliado(), NumeroAfiliado(), Domicilio(), Email(), Telefono(), Comentarios(), true);
+            HistoriaClinica frmHistoriaClinica = new HistoriaClinica(paciente);
+            frmHistoriaClinica.ShowDialog();
+
+
         }
     }
 }

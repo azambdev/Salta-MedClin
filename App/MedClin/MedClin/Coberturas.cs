@@ -51,7 +51,7 @@ namespace MedClin
             _coberturasExistentes = listaCoberturas;
             if (listaCoberturas.Any())
             {
-                dataGridViewCoberturas.DataSource = listaCoberturas.OrderBy(x => x.Id()).Select(p => new { Nro = p.Id(), Descripción = p.Descripcion(), Comentarios = p.Comentarios() }).ToList();
+                dataGridViewCoberturas.DataSource = listaCoberturas.OrderBy(x => x.Id()).Select(p => new { Nro = p.Id(), Nombre = p.Descripcion(), Comentarios = p.Comentarios() }).ToList();
                 dataGridViewCoberturas.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
                 dataGridViewCoberturas.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
                 dataGridViewCoberturas.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
