@@ -17,6 +17,7 @@ namespace Negocio
         private string _examenFisico;
         private string _estudios;
         private string _tratamiento;
+        private string _receta;
 
         public int Id()
         {
@@ -50,9 +51,12 @@ namespace Negocio
         {
             return this._tratamiento;
         }
+        public string Receta()
+        {
+            return this._receta;
+        }
 
-
-        public HistoriaClinica(int id, Paciente paciente, DateTime fechaConsulta, string motivo, string examenFisico, string estudios, string tratamiento)
+        public HistoriaClinica(int id, Paciente paciente, DateTime fechaConsulta, string motivo, string examenFisico, string estudios, string tratamiento, string receta)
         {
             _id = id;
             _paciente = paciente;
@@ -61,6 +65,7 @@ namespace Negocio
             _examenFisico = examenFisico;
             _estudios = estudios;
             _tratamiento = tratamiento;
+            _receta = receta;
         }
 
         public HistoriaClinica()

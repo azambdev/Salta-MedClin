@@ -48,6 +48,8 @@
             this.txtDniPaciente = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtReceta = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.txtTratamiento = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
@@ -159,7 +161,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(829, 143);
+            this.groupBox1.Size = new System.Drawing.Size(829, 145);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Paciente";
@@ -287,6 +289,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txtReceta);
+            this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.txtTratamiento);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.checkBox7);
@@ -310,20 +314,42 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(829, 388);
+            this.groupBox2.Size = new System.Drawing.Size(829, 432);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Consulta";
             // 
+            // txtReceta
+            // 
+            this.txtReceta.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReceta.Location = new System.Drawing.Point(105, 369);
+            this.txtReceta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtReceta.MaxLength = 500;
+            this.txtReceta.Multiline = true;
+            this.txtReceta.Name = "txtReceta";
+            this.txtReceta.Size = new System.Drawing.Size(637, 44);
+            this.txtReceta.TabIndex = 37;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.Red;
+            this.label10.Location = new System.Drawing.Point(383, 347);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(73, 20);
+            this.label10.TabIndex = 36;
+            this.label10.Text = "Receta";
+            // 
             // txtTratamiento
             // 
             this.txtTratamiento.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTratamiento.Location = new System.Drawing.Point(105, 330);
+            this.txtTratamiento.Location = new System.Drawing.Point(105, 301);
             this.txtTratamiento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTratamiento.MaxLength = 500;
             this.txtTratamiento.Multiline = true;
             this.txtTratamiento.Name = "txtTratamiento";
-            this.txtTratamiento.Size = new System.Drawing.Size(637, 50);
+            this.txtTratamiento.Size = new System.Drawing.Size(637, 44);
             this.txtTratamiento.TabIndex = 35;
             // 
             // label9
@@ -331,7 +357,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Red;
-            this.label9.Location = new System.Drawing.Point(361, 308);
+            this.label9.Location = new System.Drawing.Point(361, 279);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(126, 20);
             this.label9.TabIndex = 34;
@@ -341,7 +367,7 @@
             // 
             this.checkBox7.AutoSize = true;
             this.checkBox7.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox7.Location = new System.Drawing.Point(669, 223);
+            this.checkBox7.Location = new System.Drawing.Point(669, 205);
             this.checkBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBox7.Name = "checkBox7";
             this.checkBox7.Size = new System.Drawing.Size(73, 24);
@@ -353,7 +379,7 @@
             // 
             this.checkBox6.AutoSize = true;
             this.checkBox6.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox6.Location = new System.Drawing.Point(595, 223);
+            this.checkBox6.Location = new System.Drawing.Point(595, 205);
             this.checkBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(69, 24);
@@ -365,7 +391,7 @@
             // 
             this.checkBox5.AutoSize = true;
             this.checkBox5.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox5.Location = new System.Drawing.Point(520, 223);
+            this.checkBox5.Location = new System.Drawing.Point(520, 205);
             this.checkBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(68, 24);
@@ -377,7 +403,7 @@
             // 
             this.checkBox4.AutoSize = true;
             this.checkBox4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox4.Location = new System.Drawing.Point(445, 223);
+            this.checkBox4.Location = new System.Drawing.Point(445, 205);
             this.checkBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(69, 24);
@@ -389,7 +415,7 @@
             // 
             this.checkBox3.AutoSize = true;
             this.checkBox3.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox3.Location = new System.Drawing.Point(319, 223);
+            this.checkBox3.Location = new System.Drawing.Point(319, 205);
             this.checkBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(120, 24);
@@ -401,7 +427,7 @@
             // 
             this.checkBox2.AutoSize = true;
             this.checkBox2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox2.Location = new System.Drawing.Point(171, 223);
+            this.checkBox2.Location = new System.Drawing.Point(171, 205);
             this.checkBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(142, 24);
@@ -413,7 +439,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(108, 222);
+            this.checkBox1.Location = new System.Drawing.Point(108, 204);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(57, 24);
@@ -424,12 +450,12 @@
             // txtEstudios
             // 
             this.txtEstudios.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEstudios.Location = new System.Drawing.Point(104, 255);
+            this.txtEstudios.Location = new System.Drawing.Point(105, 233);
             this.txtEstudios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEstudios.MaxLength = 500;
             this.txtEstudios.Multiline = true;
             this.txtEstudios.Name = "txtEstudios";
-            this.txtEstudios.Size = new System.Drawing.Size(639, 50);
+            this.txtEstudios.Size = new System.Drawing.Size(639, 43);
             this.txtEstudios.TabIndex = 26;
             // 
             // label8
@@ -437,7 +463,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(379, 199);
+            this.label8.Location = new System.Drawing.Point(379, 181);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(91, 20);
             this.label8.TabIndex = 25;
@@ -458,12 +484,12 @@
             // txtExamen
             // 
             this.txtExamen.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtExamen.Location = new System.Drawing.Point(107, 139);
+            this.txtExamen.Location = new System.Drawing.Point(105, 129);
             this.txtExamen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtExamen.MaxLength = 500;
             this.txtExamen.Multiline = true;
             this.txtExamen.Name = "txtExamen";
-            this.txtExamen.Size = new System.Drawing.Size(639, 50);
+            this.txtExamen.Size = new System.Drawing.Size(639, 43);
             this.txtExamen.TabIndex = 24;
             // 
             // label3
@@ -471,7 +497,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(348, 117);
+            this.label3.Location = new System.Drawing.Point(348, 107);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(145, 20);
             this.label3.TabIndex = 23;
@@ -511,7 +537,7 @@
             this.txtMotivo.MaxLength = 500;
             this.txtMotivo.Multiline = true;
             this.txtMotivo.Name = "txtMotivo";
-            this.txtMotivo.Size = new System.Drawing.Size(639, 50);
+            this.txtMotivo.Size = new System.Drawing.Size(639, 43);
             this.txtMotivo.TabIndex = 20;
             // 
             // label7
@@ -529,10 +555,10 @@
             // 
             this.groupBox3.Controls.Add(this.dataGridView1);
             this.groupBox3.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(12, 624);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Location = new System.Drawing.Point(12, 674);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(829, 140);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
@@ -542,7 +568,7 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(9, 27);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(812, 106);
@@ -552,14 +578,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(856, 779);
+            this.ClientSize = new System.Drawing.Size(856, 837);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "HistoriaClinica";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -621,5 +647,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox txtReceta;
+        private System.Windows.Forms.Label label10;
     }
 }
