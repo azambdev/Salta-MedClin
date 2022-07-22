@@ -141,6 +141,7 @@
             this.toolStripButton1.Size = new System.Drawing.Size(70, 56);
             this.toolStripButton1.Text = "Guardar";
             this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // groupBox1
             // 

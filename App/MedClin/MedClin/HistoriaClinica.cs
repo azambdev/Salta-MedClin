@@ -148,5 +148,95 @@ namespace MedClin
         {
             HabilitarCamposPaciente();
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!FormularioEstaCompleto())
+                {
+                    return;
+                }
+                if (!txtDniPaciente.Enabled)
+                {
+
+                    //if (_listaPacientesExistentes.Exists(x => x.NroDocumento().Trim() == Dni().Trim()))
+                    //{
+                    //    MessageBox.Show("El DNI ingresado ya existe.", "Validación de operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //    return;
+                    //}
+
+                    GuardarHistoriaClinica();
+                    MessageBox.Show("Historia clínica guardada correctamente", "Resultado de Operación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    //txtDni.Enabled = false;
+                    //toolStripButtonHistoriaClinica.Visible = true;
+                }
+                else
+                {
+                    return;
+                    //ActualizarPaciente();
+                    //MessageBox.Show("Paciente guardado correctamente", "Resultado de Operación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+
+                return;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en proceso: " + ex.Message, "Resultado de Operación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+
+
+
+
+
+
+
+
+        }
+
+        private void GuardarHistoriaClinica()
+        {
+            try
+            {
+                //Negocio.HistoriaClinica historia = new Negocio.HistoriaClinica(0, Dni(), ApellidoPaciente(), NombrePaciente(), FechaNacimiento(), CoberturaAfiliado(), NumeroAfiliado(), Domicilio(), Email(), Telefono(), Comentarios(), true);
+                //historia.Create();
+                //_listaPacientesExistentes = historia.GetHistoriaClinicaByDni(Dni());
+                ////ActualizarGrilladeHistorias
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error en proceso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        private bool FormularioEstaCompleto()
+        {
+            if (EstaVacio(Dni()))
+            {
+                MessageBox.Show("Debe completar el DNI del paciente", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDniPaciente.Focus();
+                return false;
+            }
+
+            return true;
+        }
+        private bool EstaVacio(string campo)
+        {
+            return campo.Length == 0;
+        }
+
+        private string Dni()
+        {
+            return txtDniPaciente.Text.Trim();
+        }
+
     }
 }
