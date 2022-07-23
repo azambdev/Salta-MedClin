@@ -25,6 +25,7 @@ namespace MedClin
 
         private List<Negocio.Paciente> _listaPacientesExistentes = new List<Negocio.Paciente>();
         private List<Negocio.CoberturaMedica> _listaCoberturas = new List<Negocio.CoberturaMedica>();
+        private List<Negocio.HistoriaClinica>  _listaHistoriaDePaciente = new List<Negocio.HistoriaClinica>();
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
@@ -42,7 +43,7 @@ namespace MedClin
             List<Negocio.Paciente> listapacientes = paciente.GetPacientes();
             _listaPacientesExistentes = listapacientes;
 
-
+            btnNuevaConsulta.Visible = false;
 
 
         }
@@ -54,6 +55,22 @@ namespace MedClin
             txtNombreYApellido.Text= pacienteConsultado.Nombre()  + " " + pacienteConsultado.Apellido();
             dateTimePickerFN.Value=pacienteConsultado.FechaNacimiento();
             txtEdad.Text = CalcularEdad().ToString();
+
+
+            Negocio.HistoriaClinica historia = new Negocio.HistoriaClinica();
+            _listaHistoriaDePaciente =  historia.GetHistoriasClinicasByDni(pacienteConsultado.NroDocumento());
+
+            if (_listaHistoriaDePaciente.Any())
+            {
+                ActualizarGrilladeHistorias();
+                CargarUltimaVisitaEnFormulario();
+                bloquearCamposReceta();
+                toolStripButton1.Enabled = false;
+                btnNuevaConsulta.Visible = true;
+            }
+                   
+
+
 
             bloquearCamposPaciente();
             //txtDni.Enabled = false;
@@ -69,6 +86,23 @@ namespace MedClin
             //toolStripButtonHistoriaClinica.Visible = true;
         }
 
+        private void CargarUltimaVisitaEnFormulario()
+        {
+            Negocio.HistoriaClinica historiaClinicaReciente = _listaHistoriaDePaciente.First();
+
+            dateTimePickerFConsulta.Value = historiaClinicaReciente.FechaConsulta();
+            txtMotivo.Text = historiaClinicaReciente.Motivo();
+            txtExamen.Text = historiaClinicaReciente.ExamenFisico();
+            txtEstudios.Text = historiaClinicaReciente.Estudios();
+            txtTratamiento.Text= historiaClinicaReciente.Tratamiento();
+            txtReceta.Text = historiaClinicaReciente.Receta();
+
+            groupBoxConsulta.Text = "Última visita";
+            
+
+
+        }
+
         private void bloquearCamposPaciente()
         {
             txtDniPaciente.Enabled = false;
@@ -77,6 +111,17 @@ namespace MedClin
             dateTimePickerFN.Enabled = false;
             txtEdad.Enabled = false;
         }
+
+        private void bloquearCamposReceta()
+        {
+            dateTimePickerFConsulta.Enabled = false;
+            txtMotivo.ReadOnly = true;
+            txtExamen.ReadOnly = true;
+            txtEstudios.ReadOnly = true;
+            txtTratamiento.ReadOnly = true;
+            txtReceta.ReadOnly = true;
+        }
+
 
         private void HabilitarCamposPaciente()
         {
@@ -147,6 +192,29 @@ namespace MedClin
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
             HabilitarCamposPaciente();
+            HabilitarCamposConsulta();
+            groupBoxConsulta.Text = "Consulta";
+        }
+
+        private void HabilitarCamposConsulta()
+        {
+            dateTimePickerFConsulta.Enabled = true;
+            txtMotivo.ReadOnly = false;
+            txtExamen.ReadOnly = false;
+            txtEstudios.ReadOnly = false;
+            txtTratamiento.ReadOnly = false;
+            txtReceta.ReadOnly = false;
+
+
+            dateTimePickerFConsulta.Value= DateTime.Now;
+            txtMotivo.Clear();
+            txtExamen.Clear();
+            txtEstudios.Clear();
+            txtTratamiento.Clear();
+            txtReceta.Clear();
+
+            dataGridHistoriasPaciente.DataSource = null;
+            toolStripButton1.Enabled = true;
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -168,7 +236,8 @@ namespace MedClin
 
                     GuardarHistoriaClinica();
                     MessageBox.Show("Historia clínica guardada correctamente", "Resultado de Operación", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    bloquearCamposReceta();
+                    btnNuevaConsulta.Visible = true;
                     //txtDni.Enabled = false;
                     //toolStripButtonHistoriaClinica.Visible = true;
                 }
@@ -192,22 +261,21 @@ namespace MedClin
 
 
 
-
-
-
-
-
-
         }
 
         private void GuardarHistoriaClinica()
         {
             try
             {
-                //Negocio.HistoriaClinica historia = new Negocio.HistoriaClinica(0, Dni(), ApellidoPaciente(), NombrePaciente(), FechaNacimiento(), CoberturaAfiliado(), NumeroAfiliado(), Domicilio(), Email(), Telefono(), Comentarios(), true);
-                //historia.Create();
-                //_listaPacientesExistentes = historia.GetHistoriaClinicaByDni(Dni());
-                ////ActualizarGrilladeHistorias
+
+                Negocio.Paciente paciente = new Negocio.Paciente(Dni());
+
+
+                Negocio.HistoriaClinica historia = new Negocio.HistoriaClinica(0, paciente, FechaConsulta(), Motivo(), ExamenMedico(), Estudios(), Tratamiento(), Receta());
+                historia.Create();
+                _listaHistoriaDePaciente = historia.GetHistoriasClinicasByDni(Dni());
+                ActualizarGrilladeHistorias(); 
+                
 
             }
             catch (Exception ex)
@@ -215,6 +283,48 @@ namespace MedClin
                 MessageBox.Show(ex.Message, "Error en proceso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+        }
+
+        private void ActualizarGrilladeHistorias()
+        {
+            dataGridHistoriasPaciente.DataSource = null;
+            dataGridHistoriasPaciente.DataSource = _listaHistoriaDePaciente.Select(p => new {FechaConsulta= p.FechaConsulta(), Motivo = p.Motivo(), Examen = p.ExamenFisico(), Estudios = p.Estudios(), Tratamiento = p.Tratamiento(), Receta = p.Receta()}).ToList();
+            //dataGridHistoriasPaciente.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            //dataGridHistoriasPaciente.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            //dataGridHistoriasPaciente.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //dataGridHistoriasPaciente.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+
+
+        }
+
+        private string Motivo()
+        {
+            return txtMotivo.Text.Trim();
+        }
+
+        private string ExamenMedico()
+        {
+            return txtExamen.Text.Trim();
+        }
+
+        private string Estudios()
+        {
+            return txtEstudios.Text.Trim();
+        }
+
+        private string Tratamiento()
+        {
+            return txtTratamiento.Text.Trim();
+        }
+
+        private string Receta()
+        {
+            return txtReceta.Text.Trim();
+        }
+
+        private DateTime FechaConsulta()
+        {
+            return dateTimePickerFConsulta.Value;
         }
 
         private bool FormularioEstaCompleto()
@@ -225,6 +335,23 @@ namespace MedClin
                 txtDniPaciente.Focus();
                 return false;
             }
+
+            if (EstaVacio(Motivo()))
+            {
+                MessageBox.Show("Debe completar el motivo de la consulta", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDniPaciente.Focus();
+                return false;
+            }
+            if ((Motivo().Length<5))
+            {
+                MessageBox.Show("Debe completar un motivo de consulta válido", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDniPaciente.Focus();
+                return false;
+            }
+
+
+
+
 
             return true;
         }
@@ -238,5 +365,75 @@ namespace MedClin
             return txtDniPaciente.Text.Trim();
         }
 
+        private void btnNuevaConsulta_Click(object sender, EventArgs e)
+        {
+
+
+            dateTimePickerFConsulta.Enabled = true;
+            txtMotivo.ReadOnly = false;
+            txtExamen.ReadOnly = false;
+            txtEstudios.ReadOnly = false;
+            txtTratamiento.ReadOnly = false;
+            txtReceta.ReadOnly = false;
+
+
+            dateTimePickerFConsulta.Value = DateTime.Now;
+            txtMotivo.Clear();
+            txtExamen.Clear();
+            txtEstudios.Clear();
+            txtTratamiento.Clear();
+            txtReceta.Clear();
+
+           // dataGridHistoriasPaciente.DataSource = null;
+            toolStripButton1.Enabled = true;
+            btnNuevaConsulta.Visible = false;
+            groupBoxConsulta.Text = "Consulta";
+
+
+        }
+
+        private void dataGridHistoriasPaciente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            try
+            {
+                if (dataGridHistoriasPaciente.Rows.Count == 0)
+                {
+                    return;
+                }
+                int rowindex = dataGridHistoriasPaciente.CurrentCell.RowIndex;
+                int columnindex = dataGridHistoriasPaciente.CurrentCell.ColumnIndex;
+                DateTime fechaConsulta =DateTime.Parse(dataGridHistoriasPaciente.Rows[rowindex].Cells[0].Value.ToString());
+                dateTimePickerFConsulta.Value = fechaConsulta;
+                string motivoConsulta = (dataGridHistoriasPaciente.Rows[rowindex].Cells[1].Value.ToString());
+                txtMotivo.Text = motivoConsulta;
+
+                string examenFisico = (dataGridHistoriasPaciente.Rows[rowindex].Cells[2].Value.ToString());
+                txtExamen.Text = examenFisico;
+
+
+                string estudios = (dataGridHistoriasPaciente.Rows[rowindex].Cells[3].Value.ToString());
+                txtEstudios.Text = estudios;
+
+                string tratamiento = (dataGridHistoriasPaciente.Rows[rowindex].Cells[4].Value.ToString());
+                txtTratamiento.Text = tratamiento;
+
+                string receta = (dataGridHistoriasPaciente.Rows[rowindex].Cells[5].Value.ToString());
+                txtReceta.Text = receta;
+
+                toolStripButton1.Enabled = false;    
+                btnNuevaConsulta.Visible = true;
+                bloquearCamposReceta();
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error en proceso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+
+        }
     }
 }

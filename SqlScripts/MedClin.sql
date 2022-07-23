@@ -103,3 +103,42 @@ where Dni = inDni;
 
 
 END
+
+
+DELIMITER //
+
+Create Table HistoriaClinica
+(
+Id int AUTO_INCREMENT primary key,
+Dni varchar(20) not null,
+FechaConsulta datetime default now(),
+Motivo varchar(500) default '',
+ExamenFisico varchar(500) default '',
+Estudios varchar(500) default '',
+Tratamiento varchar(500) default '',
+Receta varchar(500) default ''
+);
+
+DELIMITER //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CreateHistoriaClinica`(in inDni varchar(20),in inFechaConsulta DateTime, in inMotivo varchar(500), in inExamenFisico varchar(500), in inEstudios varchar(500), in inTratamiento varchar(500), in inReceta varchar(500))
+BEGIN
+
+
+insert into HistoriaClinica (Dni, FechaConsulta, Motivo, ExamenFisico, Estudios, Tratamiento, Receta)
+values(inDni, inFechaConsulta, inMotivo, inExamenFisico, inEstudios, inTratamiento, inReceta);
+
+END
+
+delimiter //
+select * from HistoriaClinica;
+
+delimiter //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetHistoriaClinicaByDni`(in inDni varchar(20))
+BEGIN
+
+select id,Dni,FechaConsulta,Motivo,ExamenFisico,Estudios,Tratamiento,Receta
+from HistoriaClinica
+where Dni = inDni
+order by FechaConsulta desc;
+
+END

@@ -12,9 +12,7 @@ namespace DAL
     public class RepositorioDeHistoriasClinicas
     {
 
-      
-
-        public void Create(int id, string dni, DateTime fechaConsulta, string motivo, string examenFisico,  string estudios, string tratamiento, string receta)
+        public void Create(int id, string dni, DateTime fechaConsulta, string motivo, string examenFisico, string estudios, string tratamiento, string receta)
         {
             try
             {
@@ -28,10 +26,10 @@ namespace DAL
                         cmd.Parameters.AddWithValue("@inDni", dni);
                         cmd.Parameters.AddWithValue("@inFechaConsulta", fechaConsulta);
                         cmd.Parameters.AddWithValue("@inMotivo", motivo);
-                        cmd.Parameters.AddWithValue("@inExamenFisico", examenFisico);                        
+                        cmd.Parameters.AddWithValue("@inExamenFisico", examenFisico);
                         cmd.Parameters.AddWithValue("@inEstudios", estudios);
                         cmd.Parameters.AddWithValue("@inTratamiento", tratamiento);
-                        cmd.Parameters.AddWithValue("@inReceta", receta);                       
+                        cmd.Parameters.AddWithValue("@inReceta", receta);
                         con.Open();
                         cmd.ExecuteNonQuery();
                         con.Close();
@@ -44,6 +42,31 @@ namespace DAL
             }
         }
 
+        public DataTable GetHistoriaClinicaByDni(string dni)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
+                using (MySqlConnection con = new MySqlConnection(constr))
+                {
+                    using (MySqlCommand cmd = new MySqlCommand("GetHistoriaClinicaByDni", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@inDni", dni);
+                        using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
+                        {
+                            sda.Fill(dt);
+                        }
+                    }
+                }
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
 

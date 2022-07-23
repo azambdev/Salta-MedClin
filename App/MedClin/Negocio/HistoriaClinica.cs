@@ -73,32 +73,41 @@ namespace Negocio
 
         }
 
+        public void Create()
+        {
+            try
+            {
+                DAL.RepositorioDeHistoriasClinicas repositorioDeHistorias = new DAL.RepositorioDeHistoriasClinicas();
+                repositorioDeHistorias.Create(0,this.Paciente().NroDocumento(), this.FechaConsulta(), this.Motivo(), this.ExamenFisico(), this.Estudios(), this.Tratamiento(), this.Receta());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
-        //public List<HistoriaClinica> GetHistoriasClinicasByDni(string dniPaciente)
-        //{
-        //    DAL.RepositorioDeHistoriasClinicas repo = new DAL.RepositorioDeHistoriasClinicas();
-        //    List<HistoriaClinica> pacientes = new List<HistoriaClinica>();
-        //    DataTable table = repo.GetHistoriasByDni();
+
+        public List<HistoriaClinica> GetHistoriasClinicasByDni(string dniPaciente)
+        {
+            DAL.RepositorioDeHistoriasClinicas repo = new DAL.RepositorioDeHistoriasClinicas();
+            List<HistoriaClinica> historias = new List<HistoriaClinica>();
+            DataTable table = repo.GetHistoriaClinicaByDni(dniPaciente);
 
 
-        //    List<HistoriaClinica> historias = new List<HistoriaClinica>();
-        //    HistoriaClinica historia = new HistoriaClinica();
-        //    historias = historia.GetCoberturas();
+            //List<HistoriaClinica> historias = new List<HistoriaClinica>();
+            //HistoriaClinica historia = new HistoriaClinica();
+            //historias = historia.GetHistoriasClinicasByDni();
 
-        //    foreach (DataRow row in table.Rows)
-        //    {
-        //        bool esActivo = false;
-        //        if (row["activo"].ToString() == "1")
-        //        {
-        //            esActivo = true;
-        //        }
+            foreach (DataRow row in table.Rows)
+            {
+              
+              Paciente paciente = new Paciente(row["dni"].ToString());
+                               
 
-        //        CoberturaMedica coberturaPaciente = coberturas.Find(x => x.Id() == int.Parse(row["IdCobertura"].ToString()));
-
-        //        pacientes.Add(new Paciente(int.Parse(row["id"].ToString()), row["dni"].ToString(), row["apellido"].ToString(), row["nombre"].ToString(), DateTime.Parse(row["fechanacimiento"].ToString()), coberturaPaciente, row["numeroafiliado"].ToString(), row["domicilio"].ToString(), row["email"].ToString(), row["telefono"].ToString(), row["comentarios"].ToString(), esActivo));
-        //    }
-        //    return pacientes;
-        //}
+                historias.Add(new HistoriaClinica(int.Parse(row["id"].ToString()), paciente, DateTime.Parse(row["FechaConsulta"].ToString()), row["Motivo"].ToString(), row["ExamenFisico"].ToString(), row["Estudios"].ToString(), row["Tratamiento"].ToString(), row["Receta"].ToString()));
+            }
+            return historias;
+        }
 
 
     }

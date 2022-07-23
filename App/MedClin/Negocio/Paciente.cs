@@ -92,6 +92,11 @@ namespace Negocio
             _activo = activo;
         }
 
+        public Paciente(string dni)
+        {
+            this._nroDocumento = dni;
+        }
+
         public void Create()
         {
             try
