@@ -37,6 +37,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonHistoriaClinica = new System.Windows.Forms.ToolStripButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.txtNroAfiliado = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.dropdownCoberturas = new System.Windows.Forms.ComboBox();
@@ -61,12 +62,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -109,6 +109,7 @@
             this.toolStripButton2.Size = new System.Drawing.Size(48, 51);
             this.toolStripButton2.Text = "Buscar";
             this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripSeparator1
             // 
@@ -176,6 +177,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Principales";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::MedClin.Properties.Resources.pacienteBtn1;
+            this.pictureBox3.Location = new System.Drawing.Point(523, 16);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(38, 38);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 22;
+            this.pictureBox3.TabStop = false;
             // 
             // txtNroAfiliado
             // 
@@ -435,17 +447,6 @@
             this.pictureBox2.TabIndex = 19;
             this.pictureBox2.TabStop = false;
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::MedClin.Properties.Resources.pacienteBtn1;
-            this.pictureBox3.Location = new System.Drawing.Point(523, 16);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(38, 38);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 22;
-            this.pictureBox3.TabStop = false;
-            // 
             // Pacientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -465,10 +466,10 @@
             this.toolStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -482,7 +483,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtDni;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtApellido;
@@ -509,5 +509,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.PictureBox pictureBox3;
+        public System.Windows.Forms.TextBox txtDni;
     }
 }

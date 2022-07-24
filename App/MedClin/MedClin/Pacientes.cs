@@ -307,6 +307,21 @@ namespace MedClin
         }
 
 
+
+        public void CargarPacienteBuscado()
+        {
+
+
+            Negocio.Paciente pacienteConsultado = _listaPacientesExistentes.Find(x => x.NroDocumento() == txtDni.Text);
+            if (pacienteConsultado != null)
+            {
+                CargarDatosPaciente(pacienteConsultado);
+            }
+
+
+        }
+
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             bool baseResult = base.ProcessCmdKey(ref msg, keyData);
@@ -384,6 +399,12 @@ namespace MedClin
             frmHistoriaClinica.ShowDialog();
 
 
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            FrmBuscarPaciente formBuscarPaciente = new FrmBuscarPaciente(this);
+            formBuscarPaciente.ShowDialog();
         }
     }
 }
