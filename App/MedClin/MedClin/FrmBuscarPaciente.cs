@@ -72,13 +72,10 @@ namespace MedClin
 
         private void dataGridResultados_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
             if (dataGridResultados.Rows.Count == 0)
             {
                 return;
             }
-
-
         }
 
         private void dataGridResultados_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
