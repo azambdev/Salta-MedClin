@@ -25,7 +25,7 @@ namespace MedClin
 
         private List<Negocio.Paciente> _listaPacientesExistentes = new List<Negocio.Paciente>();
         private List<Negocio.CoberturaMedica> _listaCoberturas = new List<Negocio.CoberturaMedica>();
-        private List<Negocio.HistoriaClinica>  _listaHistoriaDePaciente = new List<Negocio.HistoriaClinica>();
+        private List<Negocio.HistoriaClinica> _listaHistoriaDePaciente = new List<Negocio.HistoriaClinica>();
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
@@ -50,15 +50,15 @@ namespace MedClin
 
         public void CargarDatosPaciente(Negocio.Paciente pacienteConsultado)
         {
-            txtDniPaciente.Text = pacienteConsultado.NroDocumento();            
-            txtDomicilioPaciente.Text= pacienteConsultado.Domicilio();
-            txtNombreYApellido.Text= pacienteConsultado.Nombre()  + " " + pacienteConsultado.Apellido();
-            dateTimePickerFN.Value=pacienteConsultado.FechaNacimiento();
+            txtDniPaciente.Text = pacienteConsultado.NroDocumento();
+            txtDomicilioPaciente.Text = pacienteConsultado.Domicilio();
+            txtNombreYApellido.Text = pacienteConsultado.Nombre() + " " + pacienteConsultado.Apellido();
+            dateTimePickerFN.Value = pacienteConsultado.FechaNacimiento();
             txtEdad.Text = CalcularEdad().ToString();
 
 
             Negocio.HistoriaClinica historia = new Negocio.HistoriaClinica();
-            _listaHistoriaDePaciente =  historia.GetHistoriasClinicasByDni(pacienteConsultado.NroDocumento());
+            _listaHistoriaDePaciente = historia.GetHistoriasClinicasByDni(pacienteConsultado.NroDocumento());
 
             if (_listaHistoriaDePaciente.Any())
             {
@@ -68,7 +68,7 @@ namespace MedClin
                 toolStripButton1.Enabled = false;
                 btnNuevaConsulta.Visible = true;
             }
-                   
+
 
 
 
@@ -94,11 +94,11 @@ namespace MedClin
             txtMotivo.Text = historiaClinicaReciente.Motivo();
             txtExamen.Text = historiaClinicaReciente.ExamenFisico();
             txtEstudios.Text = historiaClinicaReciente.Estudios();
-            txtTratamiento.Text= historiaClinicaReciente.Tratamiento();
+            txtTratamiento.Text = historiaClinicaReciente.Tratamiento();
             txtReceta.Text = historiaClinicaReciente.Receta();
 
             groupBoxConsulta.Text = "Última visita";
-            
+
 
 
         }
@@ -134,7 +134,7 @@ namespace MedClin
             txtDniPaciente.Enabled = true;
             txtDomicilioPaciente.Enabled = true;
             txtNombreYApellido.Enabled = true;
-            dateTimePickerFN.Enabled = true;            
+            dateTimePickerFN.Enabled = true;
         }
 
         public int CalcularEdad()
@@ -204,15 +204,12 @@ namespace MedClin
             txtEstudios.ReadOnly = false;
             txtTratamiento.ReadOnly = false;
             txtReceta.ReadOnly = false;
-
-
-            dateTimePickerFConsulta.Value= DateTime.Now;
+            dateTimePickerFConsulta.Value = DateTime.Now;
             txtMotivo.Clear();
             txtExamen.Clear();
             txtEstudios.Clear();
             txtTratamiento.Clear();
             txtReceta.Clear();
-
             dataGridHistoriasPaciente.DataSource = null;
             toolStripButton1.Enabled = true;
         }
@@ -225,58 +222,42 @@ namespace MedClin
                 {
                     return;
                 }
-                if (!txtDniPaciente.Enabled)
-                {
 
-                    //if (_listaPacientesExistentes.Exists(x => x.NroDocumento().Trim() == Dni().Trim()))
-                    //{
-                    //    MessageBox.Show("El DNI ingresado ya existe.", "Validación de operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    //    return;
-                    //}
-
-                    GuardarHistoriaClinica();
-                    MessageBox.Show("Historia clínica guardada correctamente", "Resultado de Operación", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    bloquearCamposReceta();
-                    btnNuevaConsulta.Visible = true;
-                    //txtDni.Enabled = false;
-                    //toolStripButtonHistoriaClinica.Visible = true;
-                }
-                else
+                if (MessageBox.Show("¿Desea guardar una nueva consulta del paciente?", "Confirmar acción", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    if (!txtDniPaciente.Enabled)
+                    {
+                        GuardarHistoriaClinica();
+                        MessageBox.Show("Historia clínica guardada correctamente", "Resultado de Operación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        bloquearCamposReceta();
+                        btnNuevaConsulta.Visible = true;
+                        //txtDni.Enabled = false;
+                        //toolStripButtonHistoriaClinica.Visible = true;
+                    }
+                    else
+                    {
+                        return;
+                    }
+
                     return;
-                    //ActualizarPaciente();
-                    //MessageBox.Show("Paciente guardado correctamente", "Resultado de Operación", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
-
-                return;
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error en proceso: " + ex.Message, "Resultado de Operación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-
-
-
         }
 
         private void GuardarHistoriaClinica()
         {
             try
             {
-
                 Negocio.Paciente paciente = new Negocio.Paciente(Dni());
-
-
                 Negocio.HistoriaClinica historia = new Negocio.HistoriaClinica(0, paciente, FechaConsulta(), Motivo(), ExamenMedico(), Estudios(), Tratamiento(), Receta());
                 historia.Create();
                 _listaHistoriaDePaciente = historia.GetHistoriasClinicasByDni(Dni());
-                ActualizarGrilladeHistorias(); 
-                
-
+                ActualizarGrilladeHistorias();
             }
             catch (Exception ex)
             {
@@ -288,7 +269,7 @@ namespace MedClin
         private void ActualizarGrilladeHistorias()
         {
             dataGridHistoriasPaciente.DataSource = null;
-            dataGridHistoriasPaciente.DataSource = _listaHistoriaDePaciente.Select(p => new {FechaConsulta= p.FechaConsulta(), Motivo = p.Motivo(), Examen = p.ExamenFisico(), Estudios = p.Estudios(), Tratamiento = p.Tratamiento(), Receta = p.Receta()}).ToList();
+            dataGridHistoriasPaciente.DataSource = _listaHistoriaDePaciente.Select(p => new { FechaConsulta = p.FechaConsulta(), Motivo = p.Motivo(), Examen = p.ExamenFisico(), Estudios = p.Estudios(), Tratamiento = p.Tratamiento(), Receta = p.Receta() }).ToList();
             //dataGridHistoriasPaciente.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             //dataGridHistoriasPaciente.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             //dataGridHistoriasPaciente.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -342,7 +323,7 @@ namespace MedClin
                 txtDniPaciente.Focus();
                 return false;
             }
-            if ((Motivo().Length<5))
+            if ((Motivo().Length < 5))
             {
                 MessageBox.Show("Debe completar un motivo de consulta válido", "Validación de Operación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtDniPaciente.Focus();
@@ -384,7 +365,7 @@ namespace MedClin
             txtTratamiento.Clear();
             txtReceta.Clear();
 
-           // dataGridHistoriasPaciente.DataSource = null;
+            // dataGridHistoriasPaciente.DataSource = null;
             toolStripButton1.Enabled = true;
             btnNuevaConsulta.Visible = false;
             groupBoxConsulta.Text = "Consulta";
@@ -403,7 +384,7 @@ namespace MedClin
                 }
                 int rowindex = dataGridHistoriasPaciente.CurrentCell.RowIndex;
                 int columnindex = dataGridHistoriasPaciente.CurrentCell.ColumnIndex;
-                DateTime fechaConsulta =DateTime.Parse(dataGridHistoriasPaciente.Rows[rowindex].Cells[0].Value.ToString());
+                DateTime fechaConsulta = DateTime.Parse(dataGridHistoriasPaciente.Rows[rowindex].Cells[0].Value.ToString());
                 dateTimePickerFConsulta.Value = fechaConsulta;
                 string motivoConsulta = (dataGridHistoriasPaciente.Rows[rowindex].Cells[1].Value.ToString());
                 txtMotivo.Text = motivoConsulta;
@@ -421,10 +402,10 @@ namespace MedClin
                 string receta = (dataGridHistoriasPaciente.Rows[rowindex].Cells[5].Value.ToString());
                 txtReceta.Text = receta;
 
-                toolStripButton1.Enabled = false;    
+                toolStripButton1.Enabled = false;
                 btnNuevaConsulta.Visible = true;
                 bloquearCamposReceta();
-                
+
             }
             catch (Exception ex)
             {
