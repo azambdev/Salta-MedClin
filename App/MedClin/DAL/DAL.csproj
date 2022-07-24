@@ -88,6 +88,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositorioDeCoberturas.cs" />
     <Compile Include="RepositorioDeHistoriasClinicas.cs" />
+    <Compile Include="RepositorioDeHistoriasClinicasDigitales.cs" />
     <Compile Include="RepositorioDePacientes.cs" />
   </ItemGroup>
   <ItemGroup>
