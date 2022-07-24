@@ -142,3 +142,13 @@ where Dni = inDni
 order by FechaConsulta desc;
 
 END
+
+
+DELIMITER //
+Create Table HistoriaClinicaDigital
+(
+Id int AUTO_INCREMENT primary key,
+Dni varchar(20) not null,
+Imagen longblob,
+FechaAlta DateTime default now()
+);
