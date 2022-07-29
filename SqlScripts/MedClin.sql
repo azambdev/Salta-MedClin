@@ -152,3 +152,24 @@ Dni varchar(20) not null,
 Imagen longblob,
 FechaAlta DateTime default now()
 );
+
+DELIMITER //
+
+CREATE PROCEDURE `CreateHistoriaClinicaDigital`(IN inDni varchar(20), IN inImagen LongBlob )
+BEGIN
+
+insert into HistoriaClinicaDigital (Dni, Imagen) values (inDni,inImagen);
+
+END
+
+DELIMITER //
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetHistoriaClinicaDigitalByDni`(in inDni varchar(20))
+BEGIN
+
+select id,Dni,Imagen
+from HistoriaClinicaDigital
+where Dni = inDni
+order by FechaAlta desc;
+
+END
