@@ -127,8 +127,14 @@
   <data name="patientBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\patientBtn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="botonBuscar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\botonBuscar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="botonGuardar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\botonGuardar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="limpiarImagenIcono2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\limpiarImagenIcono2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="coberturaIconoBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\coberturaIconoBtn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -139,13 +145,10 @@
   <data name="pacienteBtn1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\pacienteBtn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="botonBuscar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Images\botonBuscar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="contactBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\contactBtn.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="limpiarImagenIcono2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Images\limpiarImagenIcono2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="scannedImageBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\scannedImageBtn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

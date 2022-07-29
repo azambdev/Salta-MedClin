@@ -70,6 +70,12 @@
     <Compile Include="HistoriaClinica.Designer.cs">
       <DependentUpon>HistoriaClinica.cs</DependentUpon>
     </Compile>
+    <Compile Include="HistoriaDigital.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoriaDigital.Designer.cs">
+      <DependentUpon>HistoriaDigital.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pacientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HistoriaClinica.resx">
       <DependentUpon>HistoriaClinica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoriaDigital.resx">
+      <DependentUpon>HistoriaDigital.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pacientes.resx">
       <DependentUpon>Pacientes.cs</DependentUpon>
@@ -134,6 +143,7 @@
     <Content Include="Resources\Images\patient.png" />
     <Content Include="Resources\Images\patientBtn.png" />
     <Content Include="Resources\Images\salirBtn.jpg" />
+    <Content Include="Resources\Images\scannedImageBtn.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -416,5 +416,11 @@ namespace MedClin
 
 
         }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            HistoriaDigital historiaDigital = new HistoriaDigital();
+            historiaDigital.ShowDialog();
+        }
     }
 }
