@@ -43,7 +43,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxHistoria = new System.Windows.Forms.PictureBox();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.label3 = new System.Windows.Forms.Label();
             this.lblTotalImagenes = new System.Windows.Forms.Label();
@@ -52,7 +52,7 @@
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHistoria)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -100,6 +100,7 @@
             this.toolStripButton2.Size = new System.Drawing.Size(60, 56);
             this.toolStripButton2.Text = "Buscar";
             this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripSeparator1
             // 
@@ -117,6 +118,7 @@
             this.toolStripButton1.Size = new System.Drawing.Size(70, 56);
             this.toolStripButton1.Text = "Guardar";
             this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // groupBox1
             // 
@@ -181,7 +183,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.pictureBoxHistoria);
             this.panel1.Location = new System.Drawing.Point(12, 162);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(829, 484);
@@ -207,15 +209,15 @@
             this.button2.Text = "<<";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
+            // pictureBoxHistoria
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(827, 482);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.pictureBoxHistoria.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxHistoria.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxHistoria.Name = "pictureBoxHistoria";
+            this.pictureBoxHistoria.Size = new System.Drawing.Size(827, 482);
+            this.pictureBoxHistoria.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxHistoria.TabIndex = 0;
+            this.pictureBoxHistoria.TabStop = false;
             // 
             // toolStripButton5
             // 
@@ -293,12 +295,13 @@
             this.Name = "HistoriaDigital";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Historia clínica digital";
+            this.Load += new System.EventHandler(this.HistoriaDigital_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHistoria)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -320,7 +323,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBoxHistoria;
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblTotalImagenes;

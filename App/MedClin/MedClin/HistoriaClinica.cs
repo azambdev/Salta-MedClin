@@ -419,7 +419,12 @@ namespace MedClin
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            HistoriaDigital historiaDigital = new HistoriaDigital();
+
+            //if (txtDniPaciente.Enabled)
+            //{
+            //    return;      
+            //}
+            HistoriaDigital historiaDigital = new HistoriaDigital( Dni(), txtNombreYApellido.Text);
             historiaDigital.ShowDialog();
         }
     }
