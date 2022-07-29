@@ -238,5 +238,10 @@ namespace MedClin
             return txtDniPaciente.Text.Trim();
         }
 
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            HistoriaDigital historiaDigital = new HistoriaDigital();
+            historiaDigital.ShowDialog();
+        }
     }
 }
